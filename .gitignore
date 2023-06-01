@@ -22,7 +22,6 @@ dist-ssr
 *.suo
 *.ntvs*
 *.njsproj
-*.sln
 *.sw?
 
 ## Ignore Visual Studio temporary files, build results, and
@@ -35,7 +34,6 @@ dist-ssr
 *.suo
 *.user
 *.userosscache
-*.sln.docstates
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
