@@ -5,6 +5,10 @@ namespace squidapitest
     [TestClass]
     public class UnitTest1
     {
+        private readonly HttpClient _httpClient = new()
+        {
+            BaseAddress = new Uri("http://localhost:5169")
+        };
 
         /* 
             Dependency setup established.        
@@ -29,5 +33,18 @@ namespace squidapitest
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public async Task HealthCheck_return200_ok()
+        {
+            var expected = System.Net.HttpStatusCode.OK;
+
+            var response = await _httpClient.GetAsync("/healthcheck");
+
+            //await TestHelpers.AssertResponseWithContentAsync(stopwatch, response, expected, actual);
+            Assert.AreEqual(expected, response);
+        }
+
+
     }
 }
