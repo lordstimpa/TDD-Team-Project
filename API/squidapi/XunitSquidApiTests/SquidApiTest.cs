@@ -22,5 +22,17 @@ namespace XunitSquidApiTests
 
             Assert.Equal(expected, response.StatusCode);   // Assert that the status code is 200
         }
+
+        [Fact]
+        public async Task SquidApi_Healthcheck_ExpectedOk()
+        {
+            string expected = "OK";
+            var client = new HttpClient();
+
+            var response = await client.GetAsync("http://localhost:5096/healthcheck");
+            string actual = await response.Content.ReadAsStringAsync();
+
+            Assert.Equal(expected, actual);
+        }
     }
 }
