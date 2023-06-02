@@ -19,4 +19,29 @@ app.MapGet("/healthcheck", () =>
     return "OK";
 });
 
+app.MapGet("/weather/{city}", () =>
+{
+    /* We expect to get the following data:
+    
+    location.name
+    location.region
+    location.country
+    current.last_updated
+    current.temp_c
+    current.temp.f
+    current.condition.text
+    current.condition.icon
+    current.wind_mph
+    current.wind_kph
+    current.wind_degree
+    current.wind_dir
+    current.humidity
+    current.cloud
+    current.feelslike_c
+    current.feelslike_f
+
+    */
+    return "weatherdata";
+});
+
 app.Run();

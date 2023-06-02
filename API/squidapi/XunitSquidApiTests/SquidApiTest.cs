@@ -12,6 +12,7 @@ namespace XunitSquidApiTests
             Assert.True(dependencyTest.DependencyTestExpectedTrue());
         }
 
+        // Test to check the status code of GET healthcheck
         [Fact]
         public async Task SquidApi_Healthcheck_ExpectedStatusCode200()
         {
@@ -23,6 +24,7 @@ namespace XunitSquidApiTests
             Assert.Equal(expected, response.StatusCode);   // Assert that the status code is 200
         }
 
+        // Test to check the body content of GET healthcheck
         [Fact]
         public async Task SquidApi_Healthcheck_ExpectedOk()
         {
@@ -33,6 +35,13 @@ namespace XunitSquidApiTests
             string actual = await response.Content.ReadAsStringAsync();
 
             Assert.Equal(expected, actual);
+        }
+
+        // Test to get weather data from a city
+        [Fact]
+        public async Task SquidApi_WeatherData_ExpectedLocationStockholm()
+        {
+
         }
     }
 }
