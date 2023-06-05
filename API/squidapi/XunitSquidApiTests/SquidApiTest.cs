@@ -1,3 +1,4 @@
+using FluentAssertions;
 using MovieSystemTests;
 using Newtonsoft.Json;
 using squidapi;
@@ -46,37 +47,22 @@ namespace XunitSquidApiTests
         [Fact]
         public async Task SquidApi_WeatherData_ExpectedLocationStockholm()
         {
+            var city = "Stockholm";
             var expectedStatusCode = HttpStatusCode.OK;
-
-            var expectedCityName = "Stockholm";
-
-            //var expectedContent =
-            //    new CityModel(1,
-            //    "Stockholm",
-            //    "Stockholms Lan",
-            //    "Sweden",
-            //    "2023-06-05 14:21",
-            //    "2023-06-05 14:15",
-            //    23.0,
-            //    73.4,
-            //    "Sunny",
-            //    "//cdn.weatherapi.com/weather/64x64/day/113.png",
-            //    12.5,
-            //    20.2,
-            //    260,
-            //    "W",
-            //    29,
-            //    0,
-            //    24.2,
-            //    75.5
-            //    );
-
             var client = new HttpClient();
-            var stopwatch = Stopwatch.StartNew();
 
-            var response = await client.GetAsync("http://localhost:5096/weather");
+            // Act
+            var response = await client.GetAsync($"http://localhost:5096/weather/{city}");
+            var content = await response.Content.ReadAsStringAsync();
+            var locationModel = JsonConvert.DeserializeObject<LocationModel>(content);
 
-            await TestHelpers.AssertResponseWithContentAsync(stopwatch, response, expectedStatusCode, expectedCityName);
+            // Assert
+            response.StatusCode.Should().Be(expectedStatusCode);
+            locationModel.Should().NotBeNull();
+            locationModel.location.Should().NotBeNull();
+            locationModel.location.name.Should().Be(city);
+            locationModel.location.region.Should().Be("Stockholms Lan");
+            locationModel.location.country.Should().Be("Sweden");
         }
     }
 }
