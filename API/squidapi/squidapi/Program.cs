@@ -1,3 +1,7 @@
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using squidapi;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,29 +23,14 @@ app.MapGet("/healthcheck", () =>
     return "OK";
 });
 
-app.MapGet("/weather/{city}", () =>
+app.MapGet("/weather", () =>
 {
-    /* We expect to get the following data:
-    
-    location.name
-    location.region
-    location.country
-    current.last_updated
-    current.temp_c
-    current.temp.f
-    current.condition.text
-    current.condition.icon
-    current.wind_mph
-    current.wind_kph
-    current.wind_degree
-    current.wind_dir
-    current.humidity
-    current.cloud
-    current.feelslike_c
-    current.feelslike_f
+    var client = new HttpClient();
 
-    */
-    return "weatherdata";
+    var response = client.GetAsync("http://api.weatherapi.com/v1/current.json?key=a218d0e3b00847bdbf9211654233005&q=stockholm").Result;
+    var content = response.Content.ReadAsStringAsync().Result;
+    
+    return Results.Content(content, contentType: "application/json");
 });
 
 app.Run();
