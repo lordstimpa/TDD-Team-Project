@@ -52,7 +52,7 @@ namespace XunitSquidApiTests
             var client = new HttpClient();
 
             // Act
-            var response = await client.GetAsync($"http://localhost:5096/weather/{city}");
+            var response = await client.GetAsync($"http://localhost:5096/weather/");
             var content = await response.Content.ReadAsStringAsync();
             var locationModel = JsonConvert.DeserializeObject<LocationModel>(content);
 

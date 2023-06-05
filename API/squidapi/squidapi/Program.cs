@@ -23,7 +23,7 @@ app.MapGet("/healthcheck", () =>
     return "OK";
 });
 
-app.MapGet("/weather/{city}", () =>
+app.MapGet("/weather", () =>
 {
     var client = new HttpClient();
 
