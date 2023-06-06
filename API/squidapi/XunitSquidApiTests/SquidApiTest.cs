@@ -42,7 +42,7 @@ namespace XunitSquidApiTests
             Assert.Equal(expectedStatusCode, actual);
         }
 
-        // Test to get weather data from a city
+        // Test to get weather data from Stockholm/default
         [Fact]
         public async Task SquidApi_WeatherData_ExpectedLocationStockholm()
         {
@@ -50,6 +50,24 @@ namespace XunitSquidApiTests
             var expectedCityName = "Stockholm";
 
             var response = await client.GetAsync("http://localhost:5096/weather");
+            var content = await response.Content.ReadAsStringAsync();
+
+            var responseObject = JObject.Parse(content);
+
+            var locationObject = responseObject["location"];
+            var cityName = locationObject?["name"]?.ToString();
+
+            Assert.Equal(expectedCityName, cityName);
+        }
+
+        // Test to get weather data from London
+        [Fact]
+        public async Task SquidApi_WeatherData_ExpectedLocationLondon()
+        {
+            var client = new HttpClient();
+            var expectedCityName = "london";
+
+            var response = await client.GetAsync("http://localhost:5096/weather/london");
             var content = await response.Content.ReadAsStringAsync();
 
             var responseObject = JObject.Parse(content);
