@@ -33,4 +33,14 @@ app.MapGet("/weather", () =>
     return Results.Content(content, contentType: "application/json");
 });
 
+app.MapGet("/weather/{city}", () =>
+{
+    var client = new HttpClient();
+
+    var response = client.GetAsync("http://api.weatherapi.com/v1/current.json?key=a218d0e3b00847bdbf9211654233005&q=stockholm").Result;
+    var content = response.Content.ReadAsStringAsync().Result;
+
+    return Results.Content(content, contentType: "application/json");
+});
+
 app.Run();

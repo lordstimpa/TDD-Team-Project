@@ -1,5 +1,5 @@
-using MovieSystemTests;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using squidapi;
 using System.Diagnostics;
 using System.Net;
@@ -46,37 +46,18 @@ namespace XunitSquidApiTests
         [Fact]
         public async Task SquidApi_WeatherData_ExpectedLocationStockholm()
         {
-            var expectedStatusCode = HttpStatusCode.OK;
-
+            var client = new HttpClient();
             var expectedCityName = "Stockholm";
 
-            //var expectedContent =
-            //    new CityModel(1,
-            //    "Stockholm",
-            //    "Stockholms Lan",
-            //    "Sweden",
-            //    "2023-06-05 14:21",
-            //    "2023-06-05 14:15",
-            //    23.0,
-            //    73.4,
-            //    "Sunny",
-            //    "//cdn.weatherapi.com/weather/64x64/day/113.png",
-            //    12.5,
-            //    20.2,
-            //    260,
-            //    "W",
-            //    29,
-            //    0,
-            //    24.2,
-            //    75.5
-            //    );
-
-            var client = new HttpClient();
-            var stopwatch = Stopwatch.StartNew();
-
             var response = await client.GetAsync("http://localhost:5096/weather");
+            var content = await response.Content.ReadAsStringAsync();
 
-            await TestHelpers.AssertResponseWithContentAsync(stopwatch, response, expectedStatusCode, expectedCityName);
+            var responseObject = JObject.Parse(content);
+
+            var locationObject = responseObject["location"];
+            var cityName = locationObject?["name"]?.ToString();
+
+            Assert.Equal(expectedCityName, cityName);
         }
     }
 }
