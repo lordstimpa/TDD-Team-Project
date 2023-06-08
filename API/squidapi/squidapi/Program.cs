@@ -1,8 +1,9 @@
-using System.Text.Json.Serialization;
-using Newtonsoft.Json;
-using squidapi;
-
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+{
+    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
 
 var configuration = new ConfigurationBuilder()
     .SetBasePath(builder.Environment.ContentRootPath)
@@ -10,11 +11,14 @@ var configuration = new ConfigurationBuilder()
     .Build();
 
 // Add services to the container.
+builder.Services.AddAuthorization();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+app.UseCors("corsapp");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -23,6 +27,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseHttpsRedirection();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+#region API Endpoints
 app.MapGet("/healthcheck", () =>
 {
     return "OK";
@@ -37,7 +48,7 @@ app.MapGet("/weather", () =>
 
     var response = client.GetAsync($"{baseURL}{apiKey}&q=stockholm").Result;
     var content = response.Content.ReadAsStringAsync().Result;
-    
+
     return Results.Content(content, contentType: "application/json");
 });
 
@@ -53,5 +64,6 @@ app.MapGet("/weather/{city}", (string city) =>
 
     return Results.Content(content, contentType: "application/json");
 });
+#endregion
 
 app.Run();
