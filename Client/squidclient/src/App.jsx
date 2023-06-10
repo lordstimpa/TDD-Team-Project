@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import RandomCard from "./components/RandomCard";
+import AddCity from "./components/AddCity";
 
 const AppContainer = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <AppContainer>
-        <RandomCard />
+        <AddCity />
       </AppContainer>
     </>
   );
