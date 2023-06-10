@@ -389,3 +389,4 @@ FodyWeavers.xsd
 
 appsettings.json
 **/appsettings.json
+Client/squidclient/yarn.lock
