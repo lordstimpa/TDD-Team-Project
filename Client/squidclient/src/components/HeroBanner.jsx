@@ -1,17 +1,20 @@
 import styled from "styled-components";
+import APIStatus from "./APIStatus";
 
 const HeroBanner = () => {
   return (
-    <StyledHeroBanner>
-      <StyledBox>
-        <h2>
-          Welcome to <StyledWeatherText>Squid</StyledWeatherText> Weather App!
-        </h2>
-      </StyledBox>
-    </StyledHeroBanner>
+    <>
+      <StyledHeroBanner>
+        <StyledBox>
+          <h2>
+            Welcome to <StyledWeatherText>Squid</StyledWeatherText> Weather App!
+          </h2>
+        </StyledBox>
+        <APIStatus />
+      </StyledHeroBanner>
+    </>
   );
 };
-
 export default HeroBanner;
 
 //styling:
