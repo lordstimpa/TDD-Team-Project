@@ -4,3 +4,9 @@
   --font-family-1: "Quicksand", sans-serif;
   --font-family-2: "Lobster Two", cursive;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

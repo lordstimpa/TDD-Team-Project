@@ -1,8 +1,8 @@
-import HeroBanner from "./components/HeroBanner"
-import Footer from "./components/Footer"
-import Navbar from "./components/Navbar"
-import styled from 'styled-components';
-import WeatherCard from './components/weather-card'
+import HeroBanner from "./components/HeroBanner";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import styled from "styled-components";
+import WeatherCard from "./components/weather-card";
 import React from "react";
 import AddCity from "./components/AddCity";
 
@@ -11,7 +11,10 @@ const AppContainer = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+`;
+
+const OuterContainer = styled.div`
+  background: linear-gradient(45deg, #576cbc, #a5d7e8);
 `;
 
 function App() {
@@ -20,14 +23,16 @@ function App() {
       <div>
         <Navbar />
         <HeroBanner />
-        <AppContainer id="bookmarks">
-          <WeatherCard />
-        </AppContainer>
+        <OuterContainer>
+          <AppContainer>
+            <AddCity />
+          </AppContainer>
+          <AppContainer id="bookmarks">
+            <WeatherCard />
+          </AppContainer>
+        </OuterContainer>
         <Footer />
       </div>
-      <AppContainer>
-        <AddCity />
-      </AppContainer>
     </>
   );
 }
