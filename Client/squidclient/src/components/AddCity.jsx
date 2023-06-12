@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 100vw;
+  margin: 2em 0;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   & .Parent {
     width: 100%;
-    padding: 2em;
-    background: linear-gradient(45deg, #576cbc, #a5d7e8);
 
     & h1,
     p,
-    label, input {
+    label,
+    input {
       margin: 0;
       font-family: var(--font-family-1);
     }
@@ -20,17 +20,18 @@ const Container = styled.div`
     & h1 {
       text-align: center;
       padding: 0.5em;
-      color: #FFF;
+      margin-bottom: 1em;
+      color: #fff;
     }
 
     & form {
-      width: 50%;
+      width: 70%;
       margin: auto;
       display: flex;
       flex-direction: column;
 
       & label {
-        color: #FFF;
+        color: #fff;
       }
 
       & input {
@@ -40,21 +41,22 @@ const Container = styled.div`
         border: none;
       }
 
-      & input[type=submit] {
-          font-size: 1em;
-          background: linear-gradient(180deg, #19376D, #0B2447);
-          color: #FFF;
-          transition: 0.1s linear;
-          
-          :hover {
-            cursor: pointer;
-            box-shadow: 0 0 5px 5px #FFF;
-          }
+      & input[type="submit"] {
+        margin-bottom: 0;
+        font-size: 1em;
+        background: linear-gradient(180deg, #19376d, #0b2447);
+        color: #fff;
+        transition: 0.1s linear;
 
-          :active {
-            transform: scale(0.95);
-          }
+        :hover {
+          cursor: pointer;
+          box-shadow: 0 0 5px 5px #fff;
         }
+
+        :active {
+          transform: scale(0.95);
+        }
+      }
     }
   }
 `;
