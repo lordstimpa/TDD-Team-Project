@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-scroll";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
+
+  const [click, setClick] = useState(false);
+
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
+
   return (
     <>
       <Nav>
-        <LogoH2>Squid Weather</LogoH2>
-        <NavMenu>
+        <LogoH2 onClick={closeMobileMenu}>Squid Weather</LogoH2>
+        <NavMenu className={click ? "nav-menu active" : "nav-menu"}>
           <MenuItem>
             <Link
               to="bookmarks"
@@ -16,6 +23,7 @@ const Navbar = () => {
               offset={-70}
               duration={500}
               activeClass="active"
+              onClick={closeMobileMenu}
             >
               Bookmarks
             </Link>
@@ -28,6 +36,7 @@ const Navbar = () => {
               offset={-70}
               duration={500}
               activeClass="active"
+              onClick={closeMobileMenu}
             >
               General Info
             </Link>
@@ -45,6 +54,10 @@ const Navbar = () => {
             New City
           </NavBtnLink>
         </NavBtn>
+        {/* Mobile menu icon*/}
+        <Bars onClick={handleClick}>
+          {click ? <FaTimes /> : <FaBars />}
+        </Bars>
       </Nav>
     </>
   );
@@ -52,15 +65,34 @@ const Navbar = () => {
 
 export default Navbar;
 
+const Bars = styled.div`
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    color: #a5d7e8;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 60%);
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+`;
 //styling title as a logo
 const LogoH2 = styled.h2`
   color: #a5d7e8;
   font-size: 32px;
   font-family: var(--font-family-2);
   letter-spacing: 0.5px;
+  cursor: pointer;
 
   @media screen and (max-width: 768px) {
     font-size: 22px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(25%, 50%);
   }
 `;
 
@@ -72,7 +104,23 @@ const NavMenu = styled.ul`
   font-family: var(--font-family-1);
 
   @media screen and (max-width: 768px) {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 8%;
+    position: absolute;
+    top: 64px;
+    left: -100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+
+    &.active {
+      background: #0b2447;
+      left: 0;
+      opacity: 1;
+      transition: all 0.6s ease;
+      z-index: 1;
+    }
   }
 `;
 
@@ -84,6 +132,10 @@ const Nav = styled.nav`
   justify-content: space-between;
   padding: 0 60px;
   z-index: 10;
+  
+  .NavbarItems {
+      position: fixed;
+    }
 
   @media screen and (min-width: 1920px) {
     padding: 0.5rem calc((100vw - 1700px) / 2);
@@ -109,6 +161,13 @@ const MenuItem = styled.li`
   }
   &:hover {
     color: #a5d7e8;
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    padding-bottom: 1rem;
+    &:hover {
+      border: none;
+    }
   }
 `;
 
@@ -142,4 +201,17 @@ const NavBtnLink = styled(Link)`
     background: #a5d7e8;
     color: #0b2447;
   }
+  @media screen and (max-width: 768px) {
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+    display: table;
+
+    &:hover {
+      color: #a5d7e8;
+      transform: scale(1.2);
+      transition: all 0.3s ease;
+    }
+  }
 `;
+
