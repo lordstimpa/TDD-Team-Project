@@ -21,7 +21,7 @@ const WeatherCardContainer = styled.div`
   border-radius: 16px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 
-  margin: 2em 0 4em 0; // Temporary
+  margin: 2em 1em; // Temporary
 
   transition: transform 0.2s ease-in-out;
 
@@ -102,7 +102,7 @@ const TempIconUrl = "//cdn.weatherapi.com/weather/128x128/day/113.png";
 
 //functions
 
-function WeatherCard(props) {
+function WeatherCard() {
   const BaseUrl = "http://localhost:5096/weather";
 
   const [weatherData, setWeatherData] = React.useState({ results: [] });
@@ -118,6 +118,129 @@ function WeatherCard(props) {
 
   return (
     <>
+      <WeatherCardContainer>
+        <WeatherCardHeader>
+          <h2>{weatherData.location?.name}</h2>
+        </WeatherCardHeader>
+        <MainData>
+          <p>
+            {weatherData.current?.temp_c}°C / {weatherData.current?.temp_f}°F
+          </p>
+          <StyledImg
+            src={weatherData.current?.condition.icon}
+            alt="Weather Icon"
+          />
+          <p>Currently {weatherData.current?.condition.text}</p>
+        </MainData>
+
+        <WeatherInfoContainer>
+          <p>
+            Wind: {weatherData.current?.wind_kph} kph /{" "}
+            {weatherData.current?.wind_mph} mph
+          </p>
+          <p>Wind Degree: {weatherData.current?.wind_degree}</p>
+          <p>Humidity: {weatherData.current?.humidity}</p>
+        </WeatherInfoContainer>
+      </WeatherCardContainer>
+
+      <WeatherCardContainer>
+        <WeatherCardHeader>
+          <h2>{weatherData.location?.name}</h2>
+        </WeatherCardHeader>
+        <MainData>
+          <p>
+            {weatherData.current?.temp_c}°C / {weatherData.current?.temp_f}°F
+          </p>
+          <StyledImg
+            src={weatherData.current?.condition.icon}
+            alt="Weather Icon"
+          />
+          <p>Currently {weatherData.current?.condition.text}</p>
+        </MainData>
+
+        <WeatherInfoContainer>
+          <p>
+            Wind: {weatherData.current?.wind_kph} kph /{" "}
+            {weatherData.current?.wind_mph} mph
+          </p>
+          <p>Wind Degree: {weatherData.current?.wind_degree}</p>
+          <p>Humidity: {weatherData.current?.humidity}</p>
+        </WeatherInfoContainer>
+      </WeatherCardContainer>
+
+      <WeatherCardContainer>
+        <WeatherCardHeader>
+          <h2>{weatherData.location?.name}</h2>
+        </WeatherCardHeader>
+        <MainData>
+          <p>
+            {weatherData.current?.temp_c}°C / {weatherData.current?.temp_f}°F
+          </p>
+          <StyledImg
+            src={weatherData.current?.condition.icon}
+            alt="Weather Icon"
+          />
+          <p>Currently {weatherData.current?.condition.text}</p>
+        </MainData>
+
+        <WeatherInfoContainer>
+          <p>
+            Wind: {weatherData.current?.wind_kph} kph /{" "}
+            {weatherData.current?.wind_mph} mph
+          </p>
+          <p>Wind Degree: {weatherData.current?.wind_degree}</p>
+          <p>Humidity: {weatherData.current?.humidity}</p>
+        </WeatherInfoContainer>
+      </WeatherCardContainer>
+
+      <WeatherCardContainer>
+        <WeatherCardHeader>
+          <h2>{weatherData.location?.name}</h2>
+        </WeatherCardHeader>
+        <MainData>
+          <p>
+            {weatherData.current?.temp_c}°C / {weatherData.current?.temp_f}°F
+          </p>
+          <StyledImg
+            src={weatherData.current?.condition.icon}
+            alt="Weather Icon"
+          />
+          <p>Currently {weatherData.current?.condition.text}</p>
+        </MainData>
+
+        <WeatherInfoContainer>
+          <p>
+            Wind: {weatherData.current?.wind_kph} kph /{" "}
+            {weatherData.current?.wind_mph} mph
+          </p>
+          <p>Wind Degree: {weatherData.current?.wind_degree}</p>
+          <p>Humidity: {weatherData.current?.humidity}</p>
+        </WeatherInfoContainer>
+      </WeatherCardContainer>
+      <WeatherCardContainer>
+        <WeatherCardHeader>
+          <h2>{weatherData.location?.name}</h2>
+        </WeatherCardHeader>
+        <MainData>
+          <p>
+            {weatherData.current?.temp_c}°C / {weatherData.current?.temp_f}°F
+          </p>
+          <StyledImg
+            src={weatherData.current?.condition.icon}
+            alt="Weather Icon"
+          />
+          <p>Currently {weatherData.current?.condition.text}</p>
+        </MainData>
+
+        <WeatherInfoContainer>
+          <p>
+            Wind: {weatherData.current?.wind_kph} kph /{" "}
+            {weatherData.current?.wind_mph} mph
+          </p>
+          <p>Wind Degree: {weatherData.current?.wind_degree}</p>
+          <p>Humidity: {weatherData.current?.humidity}</p>
+        </WeatherInfoContainer>
+      </WeatherCardContainer>
       <WeatherCardContainer>
         <WeatherCardHeader>
           <h2>{weatherData.location?.name}</h2>

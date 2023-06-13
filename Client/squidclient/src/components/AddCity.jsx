@@ -67,7 +67,7 @@ const AddCity = () => {
       <div className="Parent">
         <form>
           <h1>Add a new City</h1>
-          <label for="city">City name:</label>
+          <label htmlFor="city">City name:</label>
           <input type="text" id="city"></input>
           <input type="submit" value="SUBMIT"></input>
         </form>
