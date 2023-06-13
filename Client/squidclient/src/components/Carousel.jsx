@@ -24,10 +24,7 @@ const Carousel = (props) => {
     }
     return ( 
         <>
-            <CarouselContainer
-                id="bookmarks"
-                ref={carousel}
-            >
+            <CarouselContainer id="bookmarks" className="carousel" ref={carousel} >
                 {weatherData.map((item, index) => {
                     return (
                         <CarouselItem key={index}>
@@ -56,6 +53,7 @@ max-width: 900px;
 
 > div {
 display: flex;
+
 }
 
 ::-webkit-scrollbar {
