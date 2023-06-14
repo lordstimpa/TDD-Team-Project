@@ -117,11 +117,11 @@ const StyledFaSpinner = styled(FaSpinner)`
 const TempIconUrl = "//cdn.weatherapi.com/weather/128x128/day/113.png";
 
 //functions
-
-function WeatherCard() {
-  const BaseUrl = "http://localhost:5096/weather";
+function WeatherCard(props) {
+  const BaseUrl = "http://dev.kjeld.io:20500/weather/";
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(true);
+
 
   const [weatherData, setWeatherData] = React.useState({ results: [] });
 

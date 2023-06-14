@@ -14,7 +14,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "http://dev.kjeld.io:20500",
+      "applicationUrl": "http://dev.kjeld.io:20500;https://dev.kjeld.io:40500",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
