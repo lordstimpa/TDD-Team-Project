@@ -6,6 +6,7 @@ import ButtonsChevron from './ButtonsChevron';
 const Carousel = (props) => {
     const [weatherData, setWeatherData] = useState([props.weatherData]);
     const carousel = useRef(null);
+    const [isPending, setIsPending] = useState(true);
 
     const handleLeftClick = (e) => {
         e.preventDefault();
@@ -18,16 +19,14 @@ const Carousel = (props) => {
         //console.log(carousel.current.offsetWidth);
         carousel.current.scrollLeft += carousel.current.offsetWidth;
     };
-
-    console.log(weatherData.length)
-
+    
     return ( 
         <>
             <CarouselContainer id="bookmarks" className="carousel" ref={carousel} >
                 {weatherData.map((item, index) => {
                     return (
                         <CarouselItem key={index}>
-                            <WeatherCard />
+                            <WeatherCard isPending={isPending} setIsPending={setIsPending} />
                         </CarouselItem>
                     )
                 })}
@@ -44,7 +43,7 @@ const CarouselContainer = styled.section`
 display: flex;
 flex-direction: row;
 align-items: center;
-justify-content: space-around;
+justify-content: space-around; //review
 overflow: hidden;
 scroll-behavior: smooth;
 margin: 0 auto;
@@ -53,7 +52,6 @@ max-width: 900px;
 
 > div {
 display: flex;
-
 }
 
 ::-webkit-scrollbar {
@@ -64,14 +62,14 @@ display: none;
     min-width: 200px; //temporary
     max-width: 300px;
     padding-left: 0; //temporary
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 @media screen and (min-width: 501px) and (max-width: 768px) {
     min-width: 200px; //temporary
     max-width: 500px;
     padding-left: 0; //temporary
-    justify-content: flex-start;
+    //justify-content: flex-start;
 }
 `;
 
