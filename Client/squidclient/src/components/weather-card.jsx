@@ -103,7 +103,7 @@ const TempIconUrl = "//cdn.weatherapi.com/weather/128x128/day/113.png";
 //functions
 
 function WeatherCard(props) {
-  const BaseUrl = "http://localhost:5096/weather";
+  const BaseUrl = "http://dev.kjeld.io:20500/weather/";
 
   const [weatherData, setWeatherData] = React.useState({ results: [] });
 
