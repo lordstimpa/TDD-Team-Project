@@ -61,7 +61,7 @@ app.MapGet("/weather", () =>
 
 app.MapGet("/weather/{city}", (string city) =>
 {
-    var client = new HttpClient();
+    var client = new HttpClient(); 
 
     var apiKey = configuration["WeatherAPIKey"];
 
