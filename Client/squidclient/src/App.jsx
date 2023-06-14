@@ -5,6 +5,7 @@ import styled from "styled-components";
 import WeatherCard from "./components/weather-card";
 import React from "react";
 import AddCity from "./components/AddCity";
+import { useState } from "react";
 
 const AppContainer = styled.section`
   display: flex;
@@ -18,6 +19,12 @@ const OuterContainer = styled.div`
 `;
 
 function App() {
+  const [city, setCity] = useState("");
+
+  const handleSubmit = (newCity) => {
+    setCity(newCity);
+  };
+
   return (
     <>
       <div>
@@ -25,10 +32,10 @@ function App() {
         <HeroBanner />
         <OuterContainer>
           <AppContainer>
-            <AddCity />
+            <AddCity onCitySubmit={handleSubmit} />
           </AppContainer>
           <AppContainer id="bookmarks">
-            <WeatherCard />
+            <WeatherCard city={city} />
           </AppContainer>
         </OuterContainer>
         <Footer />

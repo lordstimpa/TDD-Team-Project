@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState } from "react";
 
 const Container = styled.div`
   margin: 2em 0;
@@ -21,17 +22,19 @@ const Container = styled.div`
       text-align: center;
       padding: 0.5em;
       margin-bottom: 1em;
-      color: #fff;
+      color: #0b2447;
     }
 
     & form {
-      width: 70%;
+      min-width: 250px;
+      max-width: 750px;
       margin: auto;
+      padding: 0 2em;
       display: flex;
       flex-direction: column;
 
       & label {
-        color: #fff;
+        color: #0b2447;
       }
 
       & input {
@@ -50,7 +53,7 @@ const Container = styled.div`
 
         :hover {
           cursor: pointer;
-          box-shadow: 0 0 5px 5px #fff;
+          box-shadow: 0 0 25px 5px #fff;
         }
 
         :active {
@@ -61,14 +64,22 @@ const Container = styled.div`
   }
 `;
 
-const AddCity = () => {
+const AddCity = ({ onCitySubmit }) => {
+  const [city, setCity] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onCitySubmit(city);
+    setCity("");
+  };
+
   return (
     <Container>
       <div className="Parent">
-        <form>
+        <form onSubmit={handleSubmit}>
           <h1>Add a new City</h1>
           <label for="city">City name:</label>
-          <input type="text" id="city"></input>
+          <input type="text" id="city" placeholder="Stockholm"></input>
           <input type="submit" value="SUBMIT"></input>
         </form>
       </div>
