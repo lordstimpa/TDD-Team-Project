@@ -10,6 +10,8 @@ namespace XunitSquidApiTests
 {
     public class SquidApiTest
     {
+
+
         [Fact]
         public void DependencyTestExpectedTrue()
         {
@@ -24,7 +26,7 @@ namespace XunitSquidApiTests
             var expectedStatusCode = HttpStatusCode.OK;  // Expected status code OK (200)
             var client = new HttpClient();  // Create a new HttpClient instance
 
-            var response = await client.GetAsync("http://localhost:5096/healthcheck");  // Make a GET request to healthcheck endpoint
+            var response = await client.GetAsync("http://localhost:20500/healthcheck");  // Make a GET request to healthcheck endpoint
 
             Assert.Equal(expectedStatusCode, response.StatusCode);   // Assert that the status code is 200
         }
@@ -36,7 +38,7 @@ namespace XunitSquidApiTests
             string expectedStatusCode = "OK";
             var client = new HttpClient();
 
-            var response = await client.GetAsync("http://localhost:5096/healthcheck");
+            var response = await client.GetAsync("http://localhost:20500/healthcheck");
             string actual = await response.Content.ReadAsStringAsync();
 
             Assert.Equal(expectedStatusCode, actual);
@@ -49,7 +51,7 @@ namespace XunitSquidApiTests
             var client = new HttpClient();
             var expectedCityName = "Stockholm";
 
-            var response = await client.GetAsync("http://localhost:5096/weather");
+            var response = await client.GetAsync("http://localhost:20500/weather");
             var content = await response.Content.ReadAsStringAsync();
 
             var responseObject = JObject.Parse(content);
@@ -65,9 +67,9 @@ namespace XunitSquidApiTests
         public async Task SquidApi_WeatherData_ExpectedLocationLondon()
         {
             var client = new HttpClient();
-            var expectedCityName = "london";
+            var expectedCityName = "London";
 
-            var response = await client.GetAsync("http://localhost:5096/weather/london");
+            var response = await client.GetAsync("http://localhost:20500/weather/london");
             var content = await response.Content.ReadAsStringAsync();
 
             var responseObject = JObject.Parse(content);
