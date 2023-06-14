@@ -2,20 +2,10 @@ import HeroBanner from "./components/HeroBanner";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import styled from "styled-components";
-import WeatherCard from "./components/weather-card";
 import React from "react";
 import AddCity from "./components/AddCity";
+import Carousel from "./components/Carousel";
 
-const AppContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const OuterContainer = styled.div`
-  background: linear-gradient(45deg, #576cbc, #a5d7e8);
-`;
 
 function App() {
   return (
@@ -27,9 +17,7 @@ function App() {
           <AppContainer>
             <AddCity />
           </AppContainer>
-          <AppContainer id="bookmarks">
-            <WeatherCard />
-          </AppContainer>
+        <Carousel />
         </OuterContainer>
         <Footer />
       </div>
@@ -37,3 +25,16 @@ function App() {
   );
 }
 export default App;
+
+//styles
+
+export const AppContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const OuterContainer = styled.div`
+  background: linear-gradient(45deg, #576cbc, #a5d7e8);
+`;

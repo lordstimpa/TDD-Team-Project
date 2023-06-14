@@ -1,13 +1,15 @@
 //libraries
 import React from "react";
+import { useState} from 'react';
 import styled from "styled-components";
 import axios from "axios";
+import { FaSpinner } from 'react-icons/fa';
 
 //styled components start
 const WeatherCardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  //justify-content: flex-start;
   align-items: center;
   font-family: arial;
   font-weight: 400;
@@ -21,7 +23,7 @@ const WeatherCardContainer = styled.div`
   border-radius: 16px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 
-  margin: 2em 0 4em 0; // Temporary
+  margin: 2em 1em; // Temporary
 
   transition: transform 0.2s ease-in-out;
 
@@ -67,7 +69,7 @@ const StyledImg = styled.img`
 const WeatherInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   margin: 0;
 
@@ -96,28 +98,60 @@ const MainData = styled.div`
   color: #0b2447;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 `;
+
+const LoadContainer = styled.div`
+  align-items: center;
+  height: 100%;
+  margin: 0 auto;
+  padding: 2em;
+`;
+
+const StyledFaSpinner = styled(FaSpinner)`
+  font-size: 50px;
+  color: white;
+  animation: spin 2s linear infinite;
+  margin-bottom: 20px;
+`;
 //styled components end
 
 const TempIconUrl = "//cdn.weatherapi.com/weather/128x128/day/113.png";
 
 //functions
-
 function WeatherCard(props) {
   const BaseUrl = "http://dev.kjeld.io:20500/weather/";
+  const [error, setError] = useState(null);
+  const [isPending, setIsPending] = useState(true);
+
 
   const [weatherData, setWeatherData] = React.useState({ results: [] });
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const result = await axios(BaseUrl);
-      setWeatherData(result.data);
+      try {
+        setIsPending(true);
+        //console.log('isPending:', isPending);
+        const result = await axios(BaseUrl);
+        setWeatherData(result.data);
+        setError(null);
       //console.log(result.data);
+      } catch {
+        setError(error.message);
+      } finally {
+        setIsPending(false); 
+      }
     };
     fetchData();
   }, []);
 
+  //console.log('isPending:', isPending);
+
   return (
     <>
+      {isPending ? (
+        <LoadContainer>
+          <StyledFaSpinner />
+        </LoadContainer>
+      ) : (
       <WeatherCardContainer>
         <WeatherCardHeader>
           <h2>{weatherData.location?.name}</h2>
@@ -142,6 +176,7 @@ function WeatherCard(props) {
           <p>Humidity: {weatherData.current?.humidity}</p>
         </WeatherInfoContainer>
       </WeatherCardContainer>
+    )}
     </>
   );
 }
