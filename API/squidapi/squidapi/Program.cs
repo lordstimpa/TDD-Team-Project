@@ -48,7 +48,7 @@ app.MapGet("/weather", () =>
 
     if (string.IsNullOrEmpty(apiKey))
     {
-        apiKey = Environment.GetEnvironmentVariable("OWM_APIKEY");
+        apiKey = "c3609eda226444d59d8151422230606";
     }
 
     var baseURL = "http://api.weatherapi.com/v1/current.json?key=";
@@ -67,7 +67,7 @@ app.MapGet("/weather/{city}", (string city) =>
 
     if (string.IsNullOrEmpty(apiKey))
     {
-        apiKey = Environment.GetEnvironmentVariable("OWM_APIKEY");
+        apiKey = "c3609eda226444d59d8151422230606";
     }
 
     var baseURL = "http://api.weatherapi.com/v1/current.json?key=";
