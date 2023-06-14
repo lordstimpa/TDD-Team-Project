@@ -60,9 +60,17 @@ display: flex;
 display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 500px) {
     min-width: 200px; //temporary
-    padding-left: 2em; //temporary
+    max-width: 300px;
+    padding-left: 0; //temporary
+    justify-content: flex-start;
+}
+
+@media screen and (min-width: 501px) and (max-width: 768px) {
+    min-width: 200px; //temporary
+    max-width: 500px;
+    padding-left: 0; //temporary
     justify-content: flex-start;
 }
 `;
@@ -71,5 +79,10 @@ const CarouselItem = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  //justify-content: center;
+
+  @media screen and (max-width: 768px) {
+    min-width: 200px; //temporary
+    max-width: 300px;
+}
 `;

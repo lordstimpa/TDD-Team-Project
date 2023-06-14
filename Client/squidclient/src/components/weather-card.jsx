@@ -7,7 +7,7 @@ import axios from "axios";
 const WeatherCardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  //justify-content: flex-start;
   align-items: center;
   font-family: arial;
   font-weight: 400;
@@ -167,6 +167,7 @@ function WeatherCard() {
           <p>Humidity: {weatherData.current?.humidity}</p>
         </WeatherInfoContainer>
       </WeatherCardContainer>
+
       <WeatherCardContainer>
         <WeatherCardHeader>
           <h2>{weatherData.location?.name}</h2>
