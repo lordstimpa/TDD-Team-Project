@@ -3,10 +3,10 @@ import WeatherCard from "./weather-card";
 import styled from "styled-components";
 import ButtonsChevron from './ButtonsChevron';
 
-const Carousel = (props) => {
+const Carousel = (props, { isPending, setIsPending }) => {
     const [weatherData, setWeatherData] = useState([props.weatherData]);
     const carousel = useRef(null);
-    const [isPending, setIsPending] = useState(true);
+
 
     const handleLeftClick = (e) => {
         e.preventDefault();

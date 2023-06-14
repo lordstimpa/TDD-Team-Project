@@ -118,9 +118,10 @@ const TempIconUrl = "//cdn.weatherapi.com/weather/128x128/day/113.png";
 
 //functions
 
-function WeatherCard({ isPending, setIsPending }) {
+function WeatherCard() {
   const BaseUrl = "http://localhost:5096/weather";
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(null);
+  const [isPending, setIsPending] = useState(true);
 
   const [weatherData, setWeatherData] = React.useState({ results: [] });
 
