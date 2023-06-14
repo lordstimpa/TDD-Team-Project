@@ -8,6 +8,7 @@ builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 var configuration = new ConfigurationBuilder()
     .SetBasePath(builder.Environment.ContentRootPath)
     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables()
     .Build();
 
 // Add services to the container.
@@ -44,6 +45,12 @@ app.MapGet("/weather", () =>
     var client = new HttpClient();
 
     var apiKey = configuration["WeatherAPIKey"];
+
+    if (string.IsNullOrEmpty(apiKey))
+    {
+        apiKey = Environment.GetEnvironmentVariable("OWM_APIKEY");
+    }
+
     var baseURL = "http://api.weatherapi.com/v1/current.json?key=";
 
     var response = client.GetAsync($"{baseURL}{apiKey}&q=stockholm").Result;
@@ -57,6 +64,12 @@ app.MapGet("/weather/{city}", (string city) =>
     var client = new HttpClient();
 
     var apiKey = configuration["WeatherAPIKey"];
+
+    if (string.IsNullOrEmpty(apiKey))
+    {
+        apiKey = Environment.GetEnvironmentVariable("OWM_APIKEY");
+    }
+
     var baseURL = "http://api.weatherapi.com/v1/current.json?key=";
 
     var response = client.GetAsync($"{baseURL}{apiKey}&q={city}").Result;
