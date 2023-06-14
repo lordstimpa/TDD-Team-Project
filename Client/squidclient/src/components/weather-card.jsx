@@ -67,7 +67,7 @@ const StyledImg = styled.img`
 const WeatherInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   margin: 0;
 
@@ -192,54 +192,7 @@ function WeatherCard() {
         </WeatherInfoContainer>
       </WeatherCardContainer>
 
-      <WeatherCardContainer>
-        <WeatherCardHeader>
-          <h2>{weatherData.location?.name}</h2>
-        </WeatherCardHeader>
-        <MainData>
-          <p>
-            {weatherData.current?.temp_c}°C / {weatherData.current?.temp_f}°F
-          </p>
-          <StyledImg
-            src={weatherData.current?.condition.icon}
-            alt="Weather Icon"
-          />
-          <p>Currently {weatherData.current?.condition.text}</p>
-        </MainData>
 
-        <WeatherInfoContainer>
-          <p>
-            Wind: {weatherData.current?.wind_kph} kph /{" "}
-            {weatherData.current?.wind_mph} mph
-          </p>
-          <p>Wind Degree: {weatherData.current?.wind_degree}</p>
-          <p>Humidity: {weatherData.current?.humidity}</p>
-        </WeatherInfoContainer>
-      </WeatherCardContainer>
-            <WeatherCardContainer>
-        <WeatherCardHeader>
-          <h2>{weatherData.location?.name}</h2>
-        </WeatherCardHeader>
-        <MainData>
-          <p>
-            {weatherData.current?.temp_c}°C / {weatherData.current?.temp_f}°F
-          </p>
-          <StyledImg
-            src={weatherData.current?.condition.icon}
-            alt="Weather Icon"
-          />
-          <p>Currently {weatherData.current?.condition.text}</p>
-        </MainData>
-
-        <WeatherInfoContainer>
-          <p>
-            Wind: {weatherData.current?.wind_kph} kph /{" "}
-            {weatherData.current?.wind_mph} mph
-          </p>
-          <p>Wind Degree: {weatherData.current?.wind_degree}</p>
-          <p>Humidity: {weatherData.current?.humidity}</p>
-        </WeatherInfoContainer>
-      </WeatherCardContainer>
     </>
   );
 }

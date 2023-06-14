@@ -19,9 +19,8 @@ const Carousel = (props) => {
         carousel.current.scrollLeft += carousel.current.offsetWidth;
     };
 
-    if (weatherData.length <= 0) {
-        return <div></div>;
-    }
+    console.log(weatherData.length)
+
     return ( 
         <>
             <CarouselContainer id="bookmarks" className="carousel" ref={carousel} >
@@ -45,10 +44,11 @@ const CarouselContainer = styled.section`
 display: flex;
 flex-direction: row;
 align-items: center;
-justify-content: flex-start;
+justify-content: space-around;
 overflow: hidden;
 scroll-behavior: smooth;
-margin: 0 auto; 
+margin: 0 auto;
+width: 100%;
 max-width: 900px;
 
 > div {
@@ -63,6 +63,7 @@ display: none;
 @media screen and (max-width: 768px) {
     min-width: 200px; //temporary
     padding-left: 2em; //temporary
+    justify-content: flex-start;
 }
 `;
 
