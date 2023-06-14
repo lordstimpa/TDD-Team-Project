@@ -41,7 +41,7 @@ app.MapGet("/healthcheck", () =>
 
 app.MapGet("/weather", () =>
 {
-    var client = new HttpClient();
+    var client = new HttpClient(); 
 
     var apiKey = configuration["WeatherAPIKey"];
     var baseURL = "http://api.weatherapi.com/v1/current.json?key=";
