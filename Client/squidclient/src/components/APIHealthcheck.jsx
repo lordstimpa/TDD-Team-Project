@@ -9,7 +9,7 @@ const APIHealthcheck = () => {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios("http://localhost:5096/healthcheck");
+        const result = await axios("http://dev.kjeld.io:20500/healthcheck");
         setHealthCheck("Online");
       } catch (error) {
         console.error("Error fetching data:", error);
