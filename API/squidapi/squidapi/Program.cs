@@ -1,3 +1,5 @@
+using squidapi;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
@@ -13,6 +15,7 @@ var configuration = new ConfigurationBuilder()
 
 // Add services to the container.
 builder.Services.AddAuthorization();
+builder.Services.AddSingleton<apiRequestCount>(); // Use AddSingleton to create a shared instance
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -34,9 +37,21 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-#region API Endpoints
+// Retrieve the apiRequestCount service
+var serviceProvider = app.Services;
+var counter = app.Services.GetRequiredService<apiRequestCount>();
+
+
+app.MapGet("/counter", () =>
+{
+    var count = counter.GetCount();
+    var result = new { Count = count };
+    return Results.Json(result, contentType: "application/json");
+});
+
 app.MapGet("/healthcheck", () =>
 {
+    counter.IncrementCount();
     return "OK";
 });
 
@@ -56,12 +71,14 @@ app.MapGet("/weather", () =>
     var response = client.GetAsync($"{baseURL}{apiKey}&q=stockholm").Result;
     var content = response.Content.ReadAsStringAsync().Result;
 
+    counter.IncrementCount();
+
     return Results.Content(content, contentType: "application/json");
 });
 
 app.MapGet("/weather/{city}", (string city) =>
 {
-    var client = new HttpClient(); 
+    var client = new HttpClient();
 
     var apiKey = configuration["WeatherAPIKey"];
 
@@ -75,8 +92,9 @@ app.MapGet("/weather/{city}", (string city) =>
     var response = client.GetAsync($"{baseURL}{apiKey}&q={city}").Result;
     var content = response.Content.ReadAsStringAsync().Result;
 
+    counter.IncrementCount();
+
     return Results.Content(content, contentType: "application/json");
 });
-#endregion
 
 app.Run();
