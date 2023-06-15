@@ -1,9 +1,9 @@
 //libraries
 import React from "react";
-import { useState} from 'react';
+import { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { FaSpinner } from 'react-icons/fa';
+import { FaSpinner } from "react-icons/fa";
 
 //styled components start
 const WeatherCardContainer = styled.div`
@@ -118,65 +118,39 @@ const TempIconUrl = "//cdn.weatherapi.com/weather/128x128/day/113.png";
 
 //functions
 function WeatherCard(props) {
-  const BaseUrl = "http://dev.kjeld.io:20500/weather/";
-  const [error, setError] = useState(null);
-  const [isPending, setIsPending] = useState(true);
-
-
-  const [weatherData, setWeatherData] = React.useState({ results: [] });
-
+  const Url = "http://dev.kjeld.io:20500/weather/" + props.city;
+  const [Data, setData] = React.useState(null);
   React.useEffect(() => {
     const fetchData = async () => {
-      try {
-        setIsPending(true);
-        //console.log('isPending:', isPending);
-        const result = await axios(BaseUrl);
-        setWeatherData(result.data);
-        setError(null);
+      const result = await axios(Url);
+      setData(result.data);
       //console.log(result.data);
-      } catch {
-        setError(error.message);
-      } finally {
-        setIsPending(false); 
-      }
     };
     fetchData();
   }, []);
-
-  //console.log('isPending:', isPending);
-
   return (
     <>
-      {isPending ? (
-        <LoadContainer>
-          <StyledFaSpinner />
-        </LoadContainer>
-      ) : (
-      <WeatherCardContainer>
-        <WeatherCardHeader>
-          <h2>{weatherData.location?.name}</h2>
-        </WeatherCardHeader>
-        <MainData>
-          <p>
-            {weatherData.current?.temp_c}°C / {weatherData.current?.temp_f}°F
-          </p>
-          <StyledImg
-            src={weatherData.current?.condition.icon}
-            alt="Weather Icon"
-          />
-          <p>Currently {weatherData.current?.condition.text}</p>
-        </MainData>
-
-        <WeatherInfoContainer>
-          <p>
-            Wind: {weatherData.current?.wind_kph} kph /{" "}
-            {weatherData.current?.wind_mph} mph
-          </p>
-          <p>Wind Degree: {weatherData.current?.wind_degree}</p>
-          <p>Humidity: {weatherData.current?.humidity}</p>
-        </WeatherInfoContainer>
-      </WeatherCardContainer>
-    )}
+      {Data && Data.location && (
+        <WeatherCardContainer>
+          <WeatherCardHeader>
+            <h2>{Data.location?.name}</h2>
+          </WeatherCardHeader>
+          <MainData>
+            <p>
+              {Data.current?.temp_c}°C / {Data.current?.temp_f}°F
+            </p>
+            <StyledImg src={Data.current?.condition.icon} alt="Weather Icon" />
+            <p>Currently {Data.current?.condition.text}</p>
+          </MainData>
+          <WeatherInfoContainer>
+            <p>
+              Wind: {Data.current?.wind_kph} kph / {Data.current?.wind_mph} mph
+            </p>
+            <p>Wind Degree: {Data.current?.wind_degree}</p>
+            <p>Humidity: {Data.current?.humidity}</p>
+          </WeatherInfoContainer>
+        </WeatherCardContainer>
+      )}
     </>
   );
 }

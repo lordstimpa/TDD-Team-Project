@@ -2,12 +2,23 @@ import HeroBanner from "./components/HeroBanner";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import styled from "styled-components";
-import React from "react";
+import React, { useState } from "react";
 import AddCity from "./components/AddCity";
 import Carousel from "./components/Carousel";
 
-
 function App() {
+  const [cities, setCities] = useState([
+    "Stockholm",
+    "Västerås",
+    "Fagersta",
+    "Norberg",
+    "Avesta",
+  ]);
+
+  const handleCitySubmit = (city) => {
+    setCities((prevCities) => [...prevCities, city]);
+  };
+
   return (
     <>
       <div>
@@ -15,9 +26,9 @@ function App() {
         <HeroBanner />
         <OuterContainer>
           <AppContainer>
-            <AddCity />
+            <AddCity onCitySubmit={handleCitySubmit} />
           </AppContainer>
-        <Carousel />
+          <Carousel weatherData={cities} />
         </OuterContainer>
         <Footer />
       </div>
