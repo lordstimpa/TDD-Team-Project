@@ -6,6 +6,7 @@ const APIHealthcheck = () => {
   const [requestCount, setRequestCount] = useState(0);
   const [healthCheck, setHealthCheck] = useState("");
 
+  // GET API status
   React.useEffect(() => {
     const fetchData = async () => {
       try {
@@ -19,58 +20,82 @@ const APIHealthcheck = () => {
     fetchData();
   }, []);
 
-  return (
-    <Container>
-      <h2>API Status: {healthCheck}</h2>
-      <h2>Request Count: {requestCount}</h2>
-    </Container>
-  );
+  // GET API request count
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios("http://dev.kjeld.io:20500/counter");
+        setRequestCount(result.data.count);
+        // console.log(result.data.count);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setRequestCount(0);
+      }
+    };
+    fetchData();
+  }, []);
+
+  if (healthCheck === "Online") {
+    return (
+      <Container>
+        <div className="InnerContainer">
+          <h2>
+            API Status: <span className="statusOnline">{healthCheck} </span>
+          </h2>
+          <h2>
+            Request Count: <span>{requestCount}</span>
+          </h2>
+        </div>
+      </Container>
+    );
+  } else {
+    return (
+      <Container>
+        <div className="InnerContainer">
+          <h2>
+            API Status: <span className="statusOffline">{healthCheck} </span>
+          </h2>
+          <h2>
+            Request Count: <span>{requestCount}</span>
+          </h2>
+        </div>
+      </Container>
+    );
+  }
 };
 
 export default APIHealthcheck;
 
 const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #0b2447;
+  padding: 1em 1em 4em 1em;
+
+  & .InnerContainer {
+    width: 50%;
+    padding: 1em;
+    background-color: #ddf1f8;
+    border-radius: 10px;
+  }
+
   & h2 {
     font-family: var(--font-family-1);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 24px;
   }
-  & span {
-    color: #8f5f00;
-    font-size: 2.6rem;
+
+  & .statusOnline {
+    color: green;
+  }
+
+  & .statusOffline {
+    color: red;
   }
 
   @media screen and (max-width: 768px) {
     font-size: 2rem;
-  }
-  & .api-info-container {
-    background-color: transparent;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-  }
-
-  & .api-request-btn {
-    background: linear-gradient(180deg, #19376d, #0b2447);
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    margin-bottom: 0;
-    cursor: pointer;
-    font-size: 1em;
-    transition: 0.1s linear;
-  }
-
-  & .status-toggle-btn {
-    background: linear-gradient(180deg, #19376d, #0b2447);
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    margin-bottom: 0;
-    cursor: pointer;
-    font-size: 1em;
-    transition: 0.1s linear;
   }
 `;

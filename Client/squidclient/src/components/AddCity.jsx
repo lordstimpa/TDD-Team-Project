@@ -7,10 +7,29 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   transition: all 0.2s ease-in-out;
 
   @media (max-width: 1000px) {
     width: 100%;
+  }
+
+  & .Container {
+    display: flex;
+    flex-direction: column;
+
+    & .inputContainer {
+      display: flex;
+      & input:nth-child(1) {
+        width: 100%;
+        margin-right: 1em;
+        height: 25px;
+      }
+      & input:nth-child(2) {
+        width: 110px;
+        height: 41.5px;
+      }
+    }
   }
 
   & h1,
@@ -90,20 +109,25 @@ const AddCity = ({ onCitySubmit }) => {
   };
 
   return (
-    <Container>
+    <Container id="add-city-component">
       <form onSubmit={handleSubmit}>
         <h1>Add a new City</h1>
-        <label htmlFor="city" className={error ? "error" : ""}>
-          {error ? "No matching location found" : "City name"}
-        </label>
-        <input
-          type="text"
-          id="city"
-          placeholder="Stockholm"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-        ></input>
-        <input type="submit" value="SUBMIT"></input>
+        <div className="Container">
+          <label htmlFor="city" className={error ? "error" : ""}>
+            {error ? "No matching location found" : "City name"}
+          </label>
+
+          <div className="inputContainer">
+            <input
+              type="text"
+              id="city"
+              placeholder="Stockholm"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            ></input>
+            <input type="submit" value="SUBMIT"></input>
+          </div>
+        </div>
       </form>
     </Container>
   );

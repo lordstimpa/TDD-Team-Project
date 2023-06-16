@@ -4,7 +4,6 @@ import { Link } from "react-scroll";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
-
   const [click, setClick] = useState(false);
 
   const handleClick = () => setClick(!click);
@@ -30,7 +29,7 @@ const Navbar = () => {
           </MenuItem>
           <MenuItem>
             <Link
-              to="general-info"
+              to="api-info-container"
               spy={true}
               smooth={true}
               offset={-70}
@@ -38,13 +37,13 @@ const Navbar = () => {
               activeClass="active"
               onClick={closeMobileMenu}
             >
-              General Info
+              API Status
             </Link>
           </MenuItem>
         </NavMenu>
         <NavBtn>
           <NavBtnLink
-            to="add-city"
+            to="add-city-component"
             spy={true}
             smooth={true}
             offset={-70}
@@ -55,9 +54,7 @@ const Navbar = () => {
           </NavBtnLink>
         </NavBtn>
         {/* Mobile menu icon*/}
-        <Bars onClick={handleClick}>
-          {click ? <FaTimes /> : <FaBars />}
-        </Bars>
+        <Bars onClick={handleClick}>{click ? <FaTimes /> : <FaBars />}</Bars>
       </Nav>
     </>
   );
@@ -111,6 +108,7 @@ const NavMenu = styled.ul`
     position: absolute;
     top: 64px;
     left: -100%;
+    padding-top: 1.61rem;
     opacity: 1;
     transition: all 0.5s ease;
 
@@ -132,10 +130,10 @@ const Nav = styled.nav`
   justify-content: space-between;
   padding: 0 60px;
   z-index: 10;
-  
+
   .NavbarItems {
-      position: fixed;
-    }
+    position: fixed;
+  }
 
   @media screen and (min-width: 1920px) {
     padding: 0.5rem calc((100vw - 1700px) / 2);
@@ -214,4 +212,3 @@ const NavBtnLink = styled(Link)`
     }
   }
 `;
-

@@ -38,4 +38,9 @@ const Button = styled.button`
     background-color: #fff;
     color: #0b2447;
   }
+
+  @media screen and (max-width: 768px) {
+    margin: 0 1em;
+    margin-bottom: 1em;
+  }
 `;
