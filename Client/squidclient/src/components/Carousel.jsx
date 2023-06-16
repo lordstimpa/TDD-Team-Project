@@ -11,11 +11,14 @@ const Carousel = ({ weatherData }) => {
     e.preventDefault();
     //console.log(carousel.current.offsetWidth);
     carousel.current.scrollLeft -= carousel.current.offsetWidth;
+    console.log(carousel.current.scrollLeft);
   };
+
   const handleRightClick = (e) => {
     e.preventDefault();
     //console.log(carousel.current.offsetWidth);
     carousel.current.scrollLeft += carousel.current.offsetWidth;
+    console.log(carousel.current.scrollLeft);
   };
 
   return (
@@ -42,12 +45,11 @@ const CarouselContainer = styled.section`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center; //review
   overflow: hidden;
   scroll-behavior: smooth;
   margin: 0 auto;
-  width: 100%;
-  max-width: 1440px; // temporary
+  width: 50%;
+  gap: 1rem;
 
   > div {
     display: flex;
@@ -57,29 +59,20 @@ const CarouselContainer = styled.section`
     display: none;
   }
 
-  @media screen and (max-width: 500px) {
-    min-width: 200px; //temporary
-    max-width: 300px;
-    padding-left: 0; //temporary
-    justify-content: center;
-  }
-
-  @media screen and (min-width: 501px) and (max-width: 768px) {
-    min-width: 200px; //temporary
-    max-width: 500px;
-    padding-left: 0; //temporary
-    //justify-content: flex-start;
+  @media screen and (max-width: 1150px) {
+    width: 95%;
   }
 `;
 
 const CarouselItem = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
-  //justify-content: center;
+  width: 500px;
+  justify-content: center;
 
-  @media screen and (max-width: 768px) {
-    min-width: 200px; //temporary
-    max-width: 300px;
+  @media screen and (max-width: 600px) {
+    align-items: left;
   }
 `;

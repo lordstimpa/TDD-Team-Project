@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import styled from "styled-components";
 import React, { useState } from "react";
 import AddCity from "./components/AddCity";
+import APIStatus from "./components/APIStatus";
 import Carousel from "./components/Carousel";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <AddCity onCitySubmit={handleCitySubmit} />
           </AppContainer>
           <Carousel weatherData={cities} />
+          <APIStatus />
         </OuterContainer>
         <Footer />
       </div>

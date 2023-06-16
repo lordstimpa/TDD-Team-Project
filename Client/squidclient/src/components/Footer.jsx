@@ -1,18 +1,20 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const StyledFooter = styled.footer`
-  background-color: #0B2447;
+  background-color: #0b2447;
   padding: 10px;
   text-align: center;
-  color: #A5D7E8;
+  color: #a5d7e8;
 `;
 const Footer = () => {
-    return (
-        <StyledFooter>
-            <p>&copy; {new Date().getFullYear()} WeatherStationAB. All rights reserved.</p>
-        </StyledFooter>
-    );
+  return (
+    <StyledFooter>
+      <p>
+        &copy; {new Date().getFullYear()} Squid Weather. All rights reserved.
+      </p>
+    </StyledFooter>
+  );
 };
 
 export default Footer;
