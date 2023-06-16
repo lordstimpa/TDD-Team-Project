@@ -88,16 +88,19 @@ namespace XunitSquidApiTests
         {
             // Arrange
             var initialCount = await GetApiCounter();
+            var countObject = int.Parse(initialCount["count"].ToString());
 
             // Act
             await MakeApiCall();
 
             // Assert
             var newCount = await GetApiCounter();
-            Assert.Equal(initialCount + 1, newCount);
+            var countObject2 = int.Parse(newCount["count"].ToString());
+
+            Assert.Equal(countObject + 1, countObject2);
         }
 
-        private async Task<int> GetApiCounter()
+        private async Task<JObject> GetApiCounter()
         {
             
             var response = await _client.GetAsync("http://localhost:20500/counter");
@@ -105,8 +108,9 @@ namespace XunitSquidApiTests
 
             // Extract the count value from the response
             var count = await response.Content.ReadAsStringAsync();
-            return int.Parse(count);
+            return JObject.Parse(count);
         }
+
         private async Task MakeApiCall()
         {
             var response = await _client.GetAsync("http://localhost:20500/weather/london");

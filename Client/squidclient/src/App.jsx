@@ -7,13 +7,7 @@ import AddCity from "./components/AddCity";
 import Carousel from "./components/Carousel";
 
 function App() {
-  const [cities, setCities] = useState([
-    "Stockholm",
-    "Västerås",
-    "Fagersta",
-    "Norberg",
-    "Avesta",
-  ]);
+  const [cities, setCities] = useState(["Stockholm"]);
 
   const handleCitySubmit = (city) => {
     setCities((prevCities) => [...prevCities, city]);
