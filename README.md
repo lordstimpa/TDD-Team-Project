@@ -1,5 +1,5 @@
-
-<h1 align="center"> Squid Weather API ??????????? </h1>
+﻿
+<h1 align="center"> Squid Weather API ☀️🌤️🌦️🌧️ </h1>
 
 <h4 align = center> Team members</h4>
 
@@ -21,11 +21,11 @@
 </p>
 </br>
 
-<h2>?? Project Overview</h2>
+<h2>🌍 Project Overview</h2>
 
 The development of this project was required by Chas Academy, and as such, it followed the specified requirements and deadline. This project is a web application that consists of a weather ASP.NET Minimal API and a React client. The main goals of the project were to plan and execute software tests with a focus on unit tests, applying test-driven development practices and utilizing advanced Git version control, including the implementation of a CI/CD pipeline. The team worked in an agile manner, following the Scrum methodology.
 
-<h2>?? Minimal Viable Product and Features:</h2>
+<h2>📋 Minimal Viable Product and Features:</h2>
 
 The MVP of the project consists of a weather API and a React client without the usage of database. The weather API provides basic weather information to the client, such as current temperature, humidity, and weather conditions, while the React client interacts with the API to present the data in a user-friendly interface. The project also incorporates advanced Git version control practices, such as main branch protection and pull requests for collaboration. Additionally, a CI/CD pipeline is implemented using git post-receive for automated deployments.
 
@@ -42,33 +42,33 @@ The MVP of the project consists of a weather API and a React client without the 
 * **CI/CD pipeline**: To implement  a CI/CD pipeline with git post-receive for automated deployments.
 
 
-<h2>?? Technology Stack</h2>
+<h2>💻 Technology Stack</h2>
 
-????? C#, JS, JSX, CSS
+👨‍💻 C#, JS, JSX, CSS
 
-?? ASP.NET: Minimal API.
+🚀 ASP.NET: Minimal API.
 
-????? React
+👨‍💻 React
 
-    ?? Vite
+    🚀 Vite
 
-    ?? Node: v20.0.0
+    📦 Node: v20.0.0
 
-    ?? npm: v9.6.4
-
-
-?? GitHub: Version Control. 
-
-??? Visual Studio and Visual Studio Code: IDEs
-
-?? Swagger: API structure reader.
-
-?? Insomnia: API test case management tool.
-
-?? Linux Server: CI/CD pipeline
+    📦 npm: v9.6.4
 
 
-<h2>??Project Methodology</h2>
+👥 GitHub: Version Control. 
+
+🖥️ Visual Studio and Visual Studio Code: IDEs
+
+🦜 Swagger: API structure reader.
+
+🛌 Insomnia: API test case management tool.
+
+🐧 Linux Server: CI/CD pipeline
+
+
+<h2>📏Project Methodology</h2>
 
 The team adopted an agile methodology, specifically following the Scrum framework. This approach allowed for iterative and collaborative work throughout the project. Sprints were planned for a duration of one week, and task management was organized using Trello as the primary tool. Trello provided a visual representation of the workflow, with lists for the Product Backlog, Sprint Backlog, Sprint (for work in progress), Archived Tasks, and Important Information. By employing Scrum and Trello, the team ensured effective task management and facilitated communication within the team.
 
@@ -84,7 +84,7 @@ Retrospectives were conducted after each sprint, and the team agreed to coordina
 Regular meetings were held, almost daily, and sprint planning sessions took place once a week to discuss the project's current status and define tasks for the upcoming sprint. Communication among team members was maintained through Discord and Slack.
 
 
-<h2>??Reflections and Aditional Info</h2>
+<h2>💭Reflections and Aditional Info</h2>
 
 **Test-driven development:**
 
@@ -218,7 +218,7 @@ Working with Styled Components had the benefit of its ability to enhance code re
 
 [WEBAPP IMAGE]
 
-Additionally, the availability of resources, tutorials, and forums ensured that we could find answers to our questions and overcome challenges effectively. Overall, the team�s experience with React Vite was positive.
+Additionally, the availability of resources, tutorials, and forums ensured that we could find answers to our questions and overcome challenges effectively. Overall, the team’s experience with React Vite was positive.
 
 **Agile Methodology:**
 
